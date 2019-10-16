@@ -1,0 +1,69 @@
+﻿@model IEnumerable<ProyectoFinal.Models.PedidoRenta>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br /> 
+<br />
+@*<p>
+    @Html.ActionLink("Rentar Nuevo", "AddRentar")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MatriculaVehiculo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MontoFactura)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodeCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaSalida)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaEntrada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpleadoAsignado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MatriculaVehiculo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MontoFactura)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodeCliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaSalida)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaEntrada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpleadoAsignado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+
+        <td>
+            @*@Html.ActionLink("Edit", "EditVehiculos", new { id = item.MatriculaVehiculo }) |*@
+            @Html.ActionLink("Devolver", "PantallaInspeccion", "Inspeccion", new { id = item.ProcesoId }, null)
+        </td>
+    </tr>
+    }
+</table>

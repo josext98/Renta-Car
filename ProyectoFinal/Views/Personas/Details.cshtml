@@ -1,0 +1,75 @@
+﻿@model ProyectoFinal.Models.Clientes
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Clientes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cedula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cedula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoTarjetaCr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoTarjetaCr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LímiteCredito)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LímiteCredito)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoPersona)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoPersona)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PersonaId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

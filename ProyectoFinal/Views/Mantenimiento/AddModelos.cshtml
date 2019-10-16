@@ -1,0 +1,50 @@
+﻿@model ProyectoFinal.Models.Modelos
+
+@{
+    ViewBag.Title = "Agregar Modelos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AddModelos</h2>
+
+
+@using (Html.BeginForm("CreateModelo", "Mantenimiento"))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+       @* <h4>Modelos</h4>*@
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ModelosName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ModelosName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ModelosName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MarcaId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MarcaId", new SelectList(@ViewBag.MarcaLista, "MarcaId", "MarcaName", "Select Group"), new { @class = "btn btn-default dropdown-toggle", Style = "width: 280px" })
+               @* @Html.DropDownList("MarcaId", null, htmlAttributes: new { @class = "form-control" })*@
+                @Html.ValidationMessageFor(model => model.MarcaId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

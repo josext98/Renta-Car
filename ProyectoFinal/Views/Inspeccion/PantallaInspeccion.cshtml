@@ -1,0 +1,83 @@
+﻿@model ProyectoFinal.Models.InspeccionTable
+@{
+    ViewBag.Title = "Pantalla Inspeccion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Proceso Inspeccion</h3>
+
+@using (Html.BeginForm("ValidarCar", "Inspeccion"))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.Matricula)
+    @Html.HiddenFor(model => model.Cliente)
+
+<div class="form-horizontal  breadcrumb">
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Matricula, "Vehiculo", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.LabelForModel(Model.Matricula, new { @class = "btn btn-default dropdown-toggle", Style = "width: 280px" })
+            @Html.ValidationMessageFor(model => model.Matricula, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Frenos, "Inpeccion de Frenos", htmlAttributes: new { @class = "form-check-label col-md-2" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.Frenos, new { htmlAttributes = new { @class = "form-check-input" } })
+            @Html.ValidationMessageFor(model => model.Frenos, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Gomas, "Inpeccion de Frenos", htmlAttributes: new { @class = "form-check-label col-md-2" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.Gomas, new { htmlAttributes = new { @class = "form-check-input" } })
+            @Html.ValidationMessageFor(model => model.Gomas, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Puertas, "Inpeccion de Puertas", htmlAttributes: new { @class = "form-check-label col-md-2" })
+
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.Puertas, new { htmlAttributes = new { @class = "form-check-input" } })
+            @Html.ValidationMessageFor(model => model.Puertas, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EmpleadoInspector, "Empleado", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("EmpleadoInspector", new SelectList(@ViewBag.Empleados, "EmpleadoId", "Nombre", "Select Group"), new { @class = "btn btn-default dropdown-toggle", Style = "width: 280px" })
+            @Html.ValidationMessageFor(model => model.EmpleadoInspector, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Combustible, htmlAttributes: new { @class = "form-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EnumDropDownListFor(model => model.Combustible, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Combustible, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Comentario, htmlAttributes: new { @class = "form-check-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Comentario, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Comentario, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Procesar" class="btn btn-success" />
+        </div>
+    </div>
+</div>
+}

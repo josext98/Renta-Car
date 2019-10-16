@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<br />
+<br />
+<br />
+
+<form>
+    <div class="form-row">
+        <div class="col-lg-3 col-lg-offset-8">
+            @*<input type="text" class="form-control" placeholder="Encuentra tu vehiculo ideal">*@
+        </div>
+        <div class="col-1">
+            @Html.ActionLink("Rentar Nuevo", "index", "Mantenimiento", new { area = "" }, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+</form>
+<br />
+<br />
+
+<h3 class="text-center">Catalogo de vehiculos Disponibles</h3>
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <img style="width:350px; height:250px" class="card-img-top" src="~/Resources/ic_Car1.png" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Carros</h5>
+                <p class="card-text">Modernidad y confianza.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <img style="width:350px; height:250px" class="card-img-top" src="~/Resources/ic_Colorado.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Caminionetas</h5>
+                <p class="card-text"> Fuerza y Confort.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <img style="width:350px; height:250px;" class="card-img-top" src="~/Resources/Truck.jpg" alt="">
+            <div class="card-body">
+                <h5 class="card-title">Camiones.</h5>
+                <p class="card-text">Tamaño y Estabilidad.</p>
+            </div>
+        </div>
+    </div>
+</div>

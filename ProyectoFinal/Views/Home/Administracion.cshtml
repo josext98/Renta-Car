@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+
+<br /><br /><br />
+
+<h3 class="text-center">Pagina de Administracion</h3>
+
+<br />
+
+<div class="col-md-12 container-fluid">
+
+
+
+    <div class="card col-sm-2">
+        <div class="card-body">
+            @Html.ActionLink("Listado Empleados", "ListadoEmpleados", "Personas", null, new { @class = "btn btn-default" })
+        </div>
+    </div>
+    <div class="card col-sm-2">
+        <div class="card-body">
+            @Html.ActionLink("Listado Clientes", "ListadoClientes", "Personas", null, new { @class = "btn btn-default" })
+
+        </div>
+    </div>
+    <div class="card col-sm-2">
+        <div class="card-body">
+            @Html.ActionLink("Listado Vehiculos", "AddVehiculos", "Mantenimiento", null, new { @class = "btn btn-default" })
+        </div>
+    </div>
+
+    <div class="card col-sm-2">
+        <div class="card-body">
+            @Html.ActionLink("Listado Marcas", "AddMarcas", "Mantenimiento", null, new { @class = "btn btn-default" })
+        </div>
+    </div>
+
+    <div class="card col-sm-2">
+        <div class="card-body">
+            @Html.ActionLink("Listado Modelos", "AddModelos", "Mantenimiento", null, new { @class = "btn btn-default" })
+        </div>
+    </div>
+
+    <div class="card col-sm-2">
+        <div class="card-body">
+            @Html.ActionLink("Agregar Combustibles", "AddTiposCombustible", "Mantenimiento", null, new { @class = "btn btn-default" })
+        </div>
+    </div>
+    <div class="card col-sm-2">
+        <br />
+        <div class="card-body">
+            @Html.ActionLink("Lista Tipo de vehiculos", "AddTipoVehiculos", "Mantenimiento", null, new { @class = "btn btn-default" })
+        </div>
+        <br />
+    </div>
+</div>

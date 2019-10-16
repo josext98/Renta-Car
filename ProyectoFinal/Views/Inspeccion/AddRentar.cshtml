@@ -1,0 +1,74 @@
+﻿@model ProyectoFinal.Models.PedidoRenta
+
+@{
+    ViewBag.Title = "AddRentar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Rentar Carro</h2>
+
+@using (Html.BeginForm("SaveRent", "Inspeccion"))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Pedido Renta</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(model => model.MatriculaVehiculo)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MatriculaVehiculo, "Vehiculo", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.LabelForModel(Model.MatriculaVehiculo, new { @class = "btn btn-default dropdown-toggle", Style = "width: 280px" })
+            @Html.ValidationMessageFor(model => model.MatriculaVehiculo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CodeCliente, "Cliente", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("CodeCliente", new SelectList(@ViewBag.Clientes, "PersonaId", "Nombre", "Select Group"), new { @class = "btn btn-default dropdown-toggle", Style = "width: 280px" })
+            @Html.ValidationMessageFor(model => model.CodeCliente, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FechaEntrada, "F. Entrada", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FechaEntrada, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FechaEntrada, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EmpleadoAsignado, "Empleado", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("EmpleadoAsignado", new SelectList(@ViewBag.Empleados, "EmpleadoId", "Nombre", "Select Group"), new { @class = "btn btn-default dropdown-toggle", Style = "width: 280px" })
+            @Html.ValidationMessageFor(model => model.EmpleadoAsignado, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MontoFactura, "Saldo a Pagar", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.MontoFactura, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.MontoFactura, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Procesar" class="btn btn-success" />
+             @Html.ActionLink("Cancelar", "Index","", new { @class = "btn btn-danger" })
+            @*<input type="" value="Cancelar" class="btn btn-danger" />*@
+        </div>
+    </div>
+</div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
