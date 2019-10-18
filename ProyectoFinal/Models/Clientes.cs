@@ -17,12 +17,13 @@ namespace ProyectoFinal.Models
         public int PersonaId { get; set; }
         [Required]
         public String Nombre { get; set; }
-        [Required]
+
+        [Required, Display(Name = "Cedula/RNC")]
         public String Cedula { get; set; }
         [Required]
         public String Telefono { get; set; }
 
-        [Required]
+        [Required, MaxLength(16, ErrorMessage ="No puede contener mas de 16 caracteres numericos"), MinLength(16, ErrorMessage = "No debe contener menos de 16 caracteres numericos")]
         public String NoTarjetaCr { get; set; }
 
         [Required]
@@ -31,7 +32,7 @@ namespace ProyectoFinal.Models
         [Required]
         public PesonaType TipoPersona { get; set; }
 
-        [Required]
+        [Required, EmailAddress(ErrorMessage ="Correo Invalido")]
         public String Email { get; set; }
     }
 }

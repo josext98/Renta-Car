@@ -49,6 +49,9 @@ namespace ProyectoFinal.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (!CommonUtil.ValidaCedula(clientes.Cedula) && !CommonUtil.ValidaRNC(clientes.Cedula))
+                    return View(clientes);
+
                 Conection.Clientes.Add(clientes);
                 Conection.SaveChanges();
                 return RedirectToAction("Index");
@@ -128,6 +131,11 @@ namespace ProyectoFinal.Controllers
     
         public ActionResult SaveEmpleado(Empleados emp)
         {
+            if (!CommonUtil.ValidaCedula(emp.Cedula) && !CommonUtil.ValidaRNC(emp.Cedula))
+                return RedirectToAction("CreateEmpleado", emp);
+
+            else if (Conection.Empleados.Any(x => x.Cedula == emp.Cedula)) 
+                return RedirectToAction("CreateEmpleado", emp);
 
             if (ModelState.IsValid)
             {
@@ -141,6 +149,12 @@ namespace ProyectoFinal.Controllers
 
         public ActionResult SaveCliente(Clientes emp)
         {
+            if (!CommonUtil.ValidaCedula(emp.Cedula) && !CommonUtil.ValidaRNC(emp.Cedula))
+                return RedirectToAction("CreateCliente", emp);
+
+            else if (Conection.Clientes.Any(x => x.Cedula == emp.Cedula) || Conection.Empleados.Any(x => x.Cedula == emp.Cedula))
+                return RedirectToAction("CreateCliente", emp);
+
             if (ModelState.IsValid)
             {
                 Conection.Clientes.Add(emp);

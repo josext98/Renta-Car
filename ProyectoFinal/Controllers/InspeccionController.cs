@@ -72,11 +72,11 @@ namespace ProyectoFinal.Controllers
             {
                 Conection.InspeccionTable.Add(Value);
                 Value.Fecha_Proceso = DateTime.Now;
-                UpdatcarStatus(Value.Matricula, Vehiculos.Status.Disponible,2);
+                UpdatcarStatus(Value.Matricula, Vehiculos.Status.Disponible, 2);
             }
             else
             {
-                UpdatcarStatus(Value.Matricula, Vehiculos.Status.Procesando,2);
+                UpdatcarStatus(Value.Matricula, Vehiculos.Status.Inspeccion, 2);
             }
 
             return RedirectToAction("Index","Mantenimiento");
@@ -108,7 +108,6 @@ namespace ProyectoFinal.Controllers
   
             Conection.SaveChanges();
         }
-
 
         public void PdfPrinter()
         {

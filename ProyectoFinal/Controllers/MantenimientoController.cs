@@ -95,6 +95,8 @@ namespace ProyectoFinal.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (Conection.Vehiculos.Any(x => x.NoPlaca == vh.NoPlaca || x.NoChasis == vh.NoChasis)) return View(vh); 
+
                 Conection.Vehiculos.Add(new Vehiculos()
                 {
                     NoChasis = vh.NoChasis,
@@ -108,9 +110,7 @@ namespace ProyectoFinal.Controllers
                 });
 
                 Conection.SaveChanges();
-
                 return RedirectToAction("Index");
-
             }
 
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Error por favor verifique informacion");
