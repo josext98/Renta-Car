@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using IronPdf;
+using System.IO;
 
 namespace ProyectoFinal.Controllers
 {
@@ -100,6 +101,10 @@ namespace ProyectoFinal.Controllers
                     pedido.Estado = PedidoRenta.RentaEstado.Liberado;
                     Conection.Entry(pedido).State = System.Data.Entity.EntityState.Modified;
 
+                    carro = Conection.Vehiculos.Where(x => x.NoChasis == car).FirstOrDefault();
+                    carro.Estado = status;
+                    Conection.Entry(carro).State = System.Data.Entity.EntityState.Modified;
+
                     break;
                 default:
                     break;
@@ -109,15 +114,19 @@ namespace ProyectoFinal.Controllers
             Conection.SaveChanges();
         }
 
-        public void PdfPrinter()
+        public ActionResult PdfPrinter()
         {
-            HtmlToPdf Renderer = new IronPdf.HtmlToPdf();
+            var htmlToPdf = new HtmlToPdf();
 
-            Renderer.RenderHtmlAsPdf("<h1>Hello World</h1>").SaveAs("html-string.pdf");
-            // Advanced: 
-            // Set a "base url" or file path so that images, javascript and CSS can be loaded  
-            var PDF = Renderer.RenderHtmlAsPdf("<img src='icons/iron.png'>", @"C:\site\assets\");
-            PDF.SaveAs("html-with-assets.pdf");
+            var html = @"<h1>Hello World!</h1><br><p>This is IronPdf.</p>";
+            // turn html to pdf
+            var pdf = htmlToPdf.RenderHtmlAsPdf(html);
+            // save resulting pdf into file
+            pdf.SaveAs(Path.Combine(Directory.GetCurrentDirectory(), "HtmlToPdf.Pdf"));
+
+
+            return View();
         }
+      
     }
 }

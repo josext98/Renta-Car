@@ -150,10 +150,16 @@ namespace ProyectoFinal.Controllers
         public ActionResult SaveCliente(Clientes emp)
         {
             if (!CommonUtil.ValidaCedula(emp.Cedula) && !CommonUtil.ValidaRNC(emp.Cedula))
-                return RedirectToAction("CreateCliente", emp);
+            {
+                clientes = emp;
+                return RedirectToAction("CreateCliente", "Personas", new { Message = "Cedula o RNC no valido"});
+            }
 
             else if (Conection.Clientes.Any(x => x.Cedula == emp.Cedula) || Conection.Empleados.Any(x => x.Cedula == emp.Cedula))
-                return RedirectToAction("CreateCliente", emp);
+            {
+                clientes = emp;
+                return RedirectToAction("CreateCliente", "Personas", new { Message =  "Cedula ya registrada"});
+            }
 
             if (ModelState.IsValid)
             {
@@ -163,9 +169,12 @@ namespace ProyectoFinal.Controllers
 
             return RedirectToAction("ListadoClientes");
         }
-        public ActionResult CreateCliente()
+        public ActionResult CreateCliente(String Message = "")
         {
-            return View();
+            //if (clientes == null) clientes = new Clientes();
+
+            ViewBag.Message = Message;
+            return View(clientes);
         }
         public ActionResult CreateEmpleado(Empleados emp)
         {

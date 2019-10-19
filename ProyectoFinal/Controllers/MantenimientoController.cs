@@ -34,8 +34,9 @@ namespace ProyectoFinal.Controllers
             return View(ListaVehiculos);
         }
 
-        public ActionResult AddVehiculos()
+        public ActionResult AddVehiculos(String Message = "")
         {
+            ViewBag.Message = Message;
             ViewBag.Marca = Conection.Marcas.ToList();
             ViewBag.Modelo = Conection.Modelos.ToList();
             ViewBag.TipoVehiculo = Conection.TipodeVehiculo.ToList();
@@ -95,7 +96,7 @@ namespace ProyectoFinal.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (Conection.Vehiculos.Any(x => x.NoPlaca == vh.NoPlaca || x.NoChasis == vh.NoChasis)) return View(vh); 
+                if (Conection.Vehiculos.Any(x => x.NoPlaca == vh.NoPlaca || x.NoChasis == vh.NoChasis)) return RedirectToAction("AddVehiculos", "Manenimiento", new { Message = "Vehiculo ya registrado con esta informacion"}); 
 
                 Conection.Vehiculos.Add(new Vehiculos()
                 {

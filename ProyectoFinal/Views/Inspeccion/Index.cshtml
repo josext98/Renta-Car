@@ -62,7 +62,8 @@
 
         <td>
             @*@Html.ActionLink("Edit", "EditVehiculos", new { id = item.MatriculaVehiculo }) |*@
-            @Html.ActionLink("Devolver", "PantallaInspeccion", "Inspeccion", new { id = item.ProcesoId }, null)
+            @Html.ActionLink("Devolver", "PantallaInspeccion", "Inspeccion", new { id = item.ProcesoId }, null) |
+            @Html.ActionLink("Imprimir Recibo", "PdfPrinter", "Inspeccion", new { id = item.ProcesoId }, null)
         </td>
     </tr>
     }
